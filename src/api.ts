@@ -21,7 +21,7 @@ router.get("/api-test", (req, res) => {
     res.json({
       test: "hi!",
     });
-  }, 10000);
+  }, 4000);
 });
 
 app.use(`/.netlify/functions/api`, router);
