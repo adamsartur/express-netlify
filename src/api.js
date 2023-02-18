@@ -5,7 +5,7 @@ import STRIPE_PK from "./js/apikey";
 const app = express();
 const router = express.Router();
 
-const newString = STRIPE_PK;
+const newString = "STRIPE_PK";
 
 router.get("/", (req, res) => {
   res.json({
