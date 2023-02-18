@@ -16,6 +16,14 @@ router.get("/test", (req, res) => {
   });
 });
 
+router.get("/api-test", (req, res) => {
+  setTimeout(() => {
+    res.json({
+      test: "hi!",
+    });
+  }, 10000);
+});
+
 app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
