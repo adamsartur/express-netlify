@@ -1,5 +1,6 @@
 const express = require("express");
 const serverless = require("serverless-http");
+import STRIPE_PK from "./js/apikey";
 
 const app = express();
 const router = express.Router();
@@ -12,7 +13,7 @@ router.get("/", (req, res) => {
 
 router.get("/test", (req, res) => {
   res.json({
-    test: "hi!",
+    test: STRIPE_PK,
   });
 });
 
