@@ -1,11 +1,12 @@
 const express = require("express");
 const serverless = require("serverless-http");
-import STRIPE_PK from "./js/apikey";
+
+require("dotenv").config();
+
+const stripe = require("stripe")(process.env.STRIPE_PK);
 
 const app = express();
 const router = express.Router();
-
-const newString = "STRIPE_PK";
 
 router.get("/", (req, res) => {
   res.json({
@@ -15,14 +16,20 @@ router.get("/", (req, res) => {
 
 router.get("/test", (req, res) => {
   res.json({
-    test: newString,
+    test: "newString",
   });
 });
 
-router.get("/api-test", (req, res) => {
-  res.json({
-    test: "hi!",
-  });
+router.get("/api-test", async (req, res) => {
+  const products = await stripe.products
+    .list({
+      limit: 3,
+    })
+    .then((products) => {
+      res.json({
+        test: products,
+      });
+    });
 });
 
 app.use(`/.netlify/functions/api`, router);
