@@ -22,7 +22,7 @@ router.get("/api-test", (req, res) => {
   });
 });
 
-app.use(`/api`, router);
+app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
